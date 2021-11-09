@@ -20,9 +20,15 @@ mongoose.connect(
 });
 
 
-app.use('/', (req, res, next) => {
-    res.status(200).json({ msg: 'API funcionando!' });
-});
+// Models
+const User = require('./models/user');
+
+// Routes
+const userRoute = require('./routes/user-router');
+
+// Routes - Usando rotas
+app.use('/users', userRoute);
+
 
 const port = process.env.POST;
 app.set('port', port);
