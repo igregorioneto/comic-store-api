@@ -1,7 +1,8 @@
-'use strict'
-
+require("dotenv").config();
 const repository = require('../repositories/user-repository');
 const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const authService = require('../services/auth-service');
 
 exports.getById = async (req, res, next) => {
     try {
@@ -90,5 +91,81 @@ exports.delete = async (req, res, next) => {
         res.status(500).send({
             message: 'Erro ao deletar o usuário.'
         });
+    }
+}
+
+// Authenticate
+exports.authenticate = async (req, res, next) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await repository.getEmail(email);
+
+        if (!user) {
+            return res.status(404).send({
+                message: 'Usuário ou Senha inválida!'
+            });
+        }
+
+        const checkedPassword = await bcrypt.compare(password, user.password);
+    
+        if (!checkedPassword) {
+            return res.status(422).send({
+                message: 'Senha inválida!'
+            });
+        }
+
+        const token = await authService.generateToken({ id: user._id });
+
+        console.log(token);
+
+        res.status(200).json({ auth: true , token });
+
+    } catch (error) {
+        res.status(500).send({
+            message: 'Erro na autenticação do usuário'
+        });
+    }
+}
+
+exports.logout = async (req, res, next) => {
+    try {
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
+        await authService.destroyToken(token);
+        res.status(201).send({
+            message: 'Usuário deslogado!'
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha na requisição solicitada'
+        })
+    }
+}
+
+
+exports.refreshToken = async (req, res, next) => {
+    try {
+        const token = req.body.token || req.query.token || req.headers['x-access-token'];
+        const data = await authService.decodeToken(token);
+
+        const user = await repository.getById(data._id);
+
+        if (!user) {
+            res.status(404).send({
+                message: 'Usuário não encontrado'
+            });
+        }
+
+        const newToken = await authService.generateToken({ id: user._id });
+
+        res.status(201).send({
+            auth: true,
+            token: newToken
+        });
+
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha ao atualizar o token'
+        })
     }
 }

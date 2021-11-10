@@ -1,5 +1,6 @@
 'use strict';
-
+require("dotenv").config();
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
