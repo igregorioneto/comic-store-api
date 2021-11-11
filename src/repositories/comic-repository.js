@@ -5,7 +5,7 @@ const Comic = mongoose.model('Comic');
 exports.get = async () => {
     return await Comic
         .find()
-        .populate('category', '_id, name');
+        .populate('category', '_id name');
 }
 
 exports.createComic = async (data) => {
