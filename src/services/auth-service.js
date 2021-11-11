@@ -11,6 +11,7 @@ exports.decodeToken = async (token) => {
 }
 
 exports.destroyToken = async (token) => {
+    console.log(token);
     return await jwt.destroy(token, process.env.SECRET);
 }
 
@@ -19,15 +20,16 @@ exports.authorize = (req, res, next) => {
 
     if (!token) {
         res.status(401).send({
-            message: 'Acesso restrito!'
+            error: 'Restricted access!'
         });
     } else {
         jwt.verify(token, process.env.SECRET, (error, decoded) => {
             if (error) {
                 res.status(401).send({
-                    message: 'Token inválido!'
+                    error: 'Token inválid!'
                 })
             } else {
+                req.userId = decoded.id;
                 next();
             }
         });

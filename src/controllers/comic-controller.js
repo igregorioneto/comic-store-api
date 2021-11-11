@@ -6,7 +6,7 @@ exports.get = async (req, res, next) => {
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
-            message: 'Falha na listagem dos Comics'
+            error: 'Comics listing failed'
         })
     }
 }
@@ -20,11 +20,11 @@ exports.createComic = async (req, res, next) => {
             category
         });
         res.status(201).send({
-            message: 'Comic criado com sucesso!'
+            message: 'Comic created successfully!'
         });
     } catch (error) {
         res.status(500).send({
-            message: 'Falha na criação do Comic'
+            error: 'Comic creation failed'
         });
     }
 }

@@ -6,7 +6,7 @@ exports.get = async (req, res, next) => {
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
-            message: 'Falha na requisição das categorias'
+            error: 'Category request failed'
         });
     }
 }
@@ -16,11 +16,11 @@ exports.createCategory = async (req, res, next) => {
         const { name } = req.body;
         await repository.createCategory({ name });
         res.status(201).send({
-            message: 'Categoria cadastrada com sucesso!'
+            message: 'Category successfully registered!'
         });
     } catch (error) {
         res.status(500).send({
-            message: 'Falha na criação da categoria'
+            error: 'Category creation failed'
         })
     }
 }

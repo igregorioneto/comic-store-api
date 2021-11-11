@@ -3,27 +3,34 @@ const repository = require('../repositories/store-repository');
 exports.get = async (req, res, next) => {
     try {
         const data = await repository.get();
-        res.status(200).send(data);
+        return res.status(200).send(data);
     } catch (error) {
-        res.status(500).send({
-            message: 'Falha na listagem dos Stores'
+        return res.status(500).send({
+            error: 'Stores listing failed'
         })
     }
 }
 
 exports.createStore = async (req, res, next) => {
     try {
-        const { user, comic } = req.body;
+        const { comic } = req.body;
+        console.log(comic);
+        if (comic.length === 0) {
+            return res.status(404).send({
+                error: 'Please enter at least one product!'
+            });
+        }
+
         await repository.createStore({
-            user,
+            user: req.userId,
             comic
         });
-        res.status(201).send({
-            message: 'Compra realizada com sucesso!'
+        return res.status(201).send({
+            message: 'Purchase made successfully!'
         });
     } catch (error) {
-        res.status(500).send({
-            message: 'Falha ao cadastrar compra'
+        return res.status(500).send({
+            error: 'Failed to register purchase'
         });
     }
 }

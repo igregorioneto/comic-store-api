@@ -11,7 +11,7 @@ exports.getById = async (req, res, next) => {
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
-            message: 'Falha ao processar sua requisição'
+            error: 'Failed to process your request'
         });
     }
 }
@@ -22,7 +22,7 @@ exports.get = async (req, res, next) => {
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
-            message: 'Falha ao processar sua requisição'
+            error: 'Failed to process your request'
         });
     }
 }
@@ -33,7 +33,7 @@ exports.post = async (req, res, next) => {
 
         if (password !== repeatPassword) {
             res.status(400).send({
-                message: 'Senhas inválidas'
+                error: 'Invalid password'
             });
         }
 
@@ -41,7 +41,7 @@ exports.post = async (req, res, next) => {
 
         if (userExists) {
             res.status(422).send({
-                message: 'Usuário já existe. Por favor, cadastrar com outro e-mail!'
+                error: 'User already exists. Please register with another email!'
             })
         }
 
@@ -56,11 +56,11 @@ exports.post = async (req, res, next) => {
         })
 
         res.status(201).send({
-            message: 'Usuário cadastrado com sucesso!'
+            message: 'Successfully registered user!'
         });
     } catch(error) {
         res.status(500).send({
-            message: 'Erro ao cadastrar usuário'
+            error: 'Error registering user'
         });
     }
 }
@@ -71,11 +71,11 @@ exports.put = async (req, res, next) => {
         const data = req.body;
         await repository.updateUser(id,data);
         res.status(201).send({
-            message: 'Usuário atualizado com sucesso!'
+            message: 'User updated successfully!'
         });
     } catch (error) {
         res.status(500).send({
-            message: 'Erro ao atualizar o usuário.'
+            error: 'Error updating user.'
         });
     }
 }
@@ -85,11 +85,11 @@ exports.delete = async (req, res, next) => {
         const id = req.params.id;
         await repository.removeUser(id);
         res.status(201).send({
-            message: 'Usuário deletado com sucesso!'
+            message: 'User deleted successfully!'
         });
     } catch (error) {
         res.status(500).send({
-            message: 'Erro ao deletar o usuário.'
+            error: 'Error deleting user.'
         });
     }
 }
@@ -103,7 +103,7 @@ exports.authenticate = async (req, res, next) => {
 
         if (!user) {
             return res.status(404).send({
-                message: 'Usuário ou Senha inválida!'
+                error: 'Invalid Username or Password!'
             });
         }
 
@@ -111,7 +111,7 @@ exports.authenticate = async (req, res, next) => {
     
         if (!checkedPassword) {
             return res.status(422).send({
-                message: 'Senha inválida!'
+                error: 'Invalid password!'
             });
         }
 
@@ -123,7 +123,7 @@ exports.authenticate = async (req, res, next) => {
 
     } catch (error) {
         res.status(500).send({
-            message: 'Erro na autenticação do usuário'
+            error: 'User authentication error'
         });
     }
 }
@@ -133,11 +133,11 @@ exports.logout = async (req, res, next) => {
         const token = req.body.token || req.query.token || req.headers['x-access-token'];
         await authService.destroyToken(token);
         res.status(201).send({
-            message: 'Usuário deslogado!'
+            message: 'logged out user!'
         });
     } catch (error) {
         res.status(500).send({
-            message: 'Falha na requisição solicitada'
+            error: 'Requested resquest failed'
         })
     }
 }
@@ -152,7 +152,7 @@ exports.refreshToken = async (req, res, next) => {
 
         if (!user) {
             res.status(404).send({
-                message: 'Usuário não encontrado'
+                error: 'User not found'
             });
         }
 
@@ -165,7 +165,7 @@ exports.refreshToken = async (req, res, next) => {
 
     } catch (error) {
         res.status(500).send({
-            message: 'Falha ao atualizar o token'
+            error: 'Failed to update token'
         })
     }
 }
