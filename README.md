@@ -1,26 +1,30 @@
-<h1 align="center">Findfood</h1>
+<h1 align="center">Comics-Atore-API</h1>
 <h1>
-    <a href="https://angular.io/">🔗
-     Angular
+    <a href="https://nodejs.org/en/">🔗
+     NodeJS
      </a>
-     <a href="https://firebase.google.com/?hl=pt"> |
-     Fisebase
+     <a href="https://expressjs.com/"> |
+     Express
+     </a>
+     <a href="https://www.mongodb.com/"> |
+     MongoDB
      </a>
 </h1>
 <p>
-🚀 Sistema para verificar as notas dos restaurantes cadastrados. Tudo isso com autenticação com o google e usando o firebase
+🚀 Sistema de venda de quadrinhos. Onde o usuário se cadastra, loga e pode realizar compras.
+
+🚀 Sistema de venta de cómics. Donde el usuario se registra, inicia sesión y puede realizar compras.
 </p>
 
-<img src="https://img.shields.io/static/v1?label=FindFood&message=Greg%C3%B3rioNeto&color=7159c1&style=for-the-badge&logo=ghost">
+<img src="https://img.shields.io/static/v1?label=ComicsStoreAPI&message=Greg%C3%B3rioNeto&color=7159c1&style=for-the-badge&logo=ghost">
 
 <h1 align="center">
-  <img alt="Findfood" title="#Findfood" src="https://i.picasion.com/pic91/b77a291dd272dee86cccbf69d0e60d1a.gif" />
+  <img alt="comics-store-api" title="#ComicsStoreAPI" src="https://i.picasion.com/pic91/b77a291dd272dee86cccbf69d0e60d1a.gif" />
 </h1>
 
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
- <a href="#tecnologias">Tecnologias</a> •
- <a href="#tecnologias">Como rodar o projeto</a> 
+ <a href="#tecnologias">Como rodar o projeto / Cómo ejecutar el proyecto</a> 
 </p>
 
 <h2 align="center">
@@ -30,35 +34,22 @@ Objetivo:
 <p align="center">
 <ul>
     <li>
-    Autenticação do Google com o Firebase
+    Cadastrar usuário / Registrar usuario
     </li>
     <li>
-    Criação de Restaurante pelo modal
+    Login no sistema / Iniciar sesión en el sistema
     </li>
     <li>
-    Listagem de restaurantes
+    Listagem dos produtos / Listado de productos
     </li>
     <li>
-    Visualização e edição dos comentários de acordo com o usuário autenticado
+    Realizar compras / Hacer compras
     </li>
 </ul>
 </p>
 
 <h2 align="center">
-Tecnologias:
-</h2>
-
-<p align="center">
-
-[Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
-
-[Firebase](https://firebase.google.com/?hl=pt)
-
-</p>
-
-
-<h2 align="center">
-Como rodar o projeto:
+Como rodar o projeto | Cómo ejecutar el proyecto:
 </h2>
 
 <p align="center">

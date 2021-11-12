@@ -1,0 +1,134 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Compras de Quadrinhos",
+        "description": "Essa API tem como objetivo de uma loja de quadrinhos",
+        "version": "1.0.0"
+    },
+    "servers": [{
+        "url": "http://localhost:3000",
+        "description": "API de test"
+    }],
+    "paths": {
+        "/authenticate": {
+            "post": {
+                "summary": "Listagem dos usuários|Listado de usuarios",
+                "description": "Listagem dos usuários|Listado de usuarios",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "post": {
+                "summary": "Rota para criação do usuário|Ruta a la creación de usuarios",
+                "description": "Rota para criação do usuário|Ruta a la creación de usuarios",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem dos usuários|Listado de usuarios",
+                "description": "Listagem dos usuários|Listado de usuarios",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "summary": "Listagem dos usuários|Listado de usuarios",
+                "description": "Listagem dos usuários|Listado de usuarios",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Listagem dos usuários|Listado de usuarios",
+                "description": "Listagem dos usuários|Listado de usuarios",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Listagem dos usuários|Listado de usuarios",
+                "description": "Listagem dos usuários|Listado de usuarios",
+                "tags": ["Users"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
