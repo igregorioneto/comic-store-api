@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API de Compras de Quadrinhos",
-        "description": "Essa API tem como objetivo de uma loja de quadrinhos",
+        "title": "Comic Store API",
+        "description": "This API is intended for a comic book store.",
         "version": "1.0.0"
     },
     "servers": [{
@@ -12,8 +12,7 @@
     "paths": {
         "/authenticate": {
             "post": {
-                "summary": "Listagem dos usuários|Listado de usuarios",
-                "description": "Listagem dos usuários|Listado de usuarios",
+                "summary": "Login user",
                 "tags": ["Users"],
                 "requestBody": {
                     "content": {
@@ -28,8 +27,7 @@
         },
         "/users": {
             "post": {
-                "summary": "Rota para criação do usuário|Ruta a la creación de usuarios",
-                "description": "Rota para criação do usuário|Ruta a la creación de usuarios",
+                "summary": "Create user",
                 "tags": ["Users"],
                 "requestBody": {
                     "content": {
@@ -42,8 +40,7 @@
                 }
             },
             "get": {
-                "summary": "Listagem dos usuários|Listado de usuarios",
-                "description": "Listagem dos usuários|Listado de usuarios",
+                "summary": "Listing of users",
                 "tags": ["Users"],
                 "requestBody": {
                     "content": {
@@ -61,8 +58,7 @@
         },
         "/users/{id}": {
             "get": {
-                "summary": "Listagem dos usuários|Listado de usuarios",
-                "description": "Listagem dos usuários|Listado de usuarios",
+                "summary": "Searching for specific user",
                 "tags": ["Users"],
                 "requestBody": {
                     "content": {
@@ -75,8 +71,7 @@
                 }
             },
             "put": {
-                "summary": "Listagem dos usuários|Listado de usuarios",
-                "description": "Listagem dos usuários|Listado de usuarios",
+                "summary": "Update a user",
                 "tags": ["Users"],
                 "security": [{ "bearerAuth": [] }],
                 "requestBody": {
@@ -90,8 +85,7 @@
                 }
             },
             "delete": {
-                "summary": "Listagem dos usuários|Listado de usuarios",
-                "description": "Listagem dos usuários|Listado de usuarios",
+                "summary": "Delete a user",
                 "tags": ["Users"],
                 "security": [{ "bearerAuth": [] }],
                 "requestBody": {
@@ -99,6 +93,110 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "get": {
+                "summary": "Category listing",
+                "tags": ["Categories"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#components/schemas/Category"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a category",
+                "description": "Listagem dos usuários|Listado de usuarios",
+                "tags": ["Categories"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/Category"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/comics": {
+            "get": {
+                "summary": "Listing comics",
+                "tags": ["Comics"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#components/schemas/Comic"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Registering a new comic",
+                "tags": ["Comics"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#components/schemas/Comic"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/stores": {
+            "get": {
+                "summary": "Listing purchase information",
+                "tags": ["Stores"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#components/schemas/Comic"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Make a purchase",
+                "description": "It is not necessary for the user ID as the application recognizes the logged in user.",
+                "tags": ["Stores"],
+                "security": [{ "bearerAuth": [] }],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#components/schemas/Store"
+                                }
                             }
                         }
                     }
@@ -118,6 +216,36 @@
                         "type": "string"
                     },
                     "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Category": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Comic": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "category": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Store": {
+                "type": "object",
+                "properties": {
+                    "comic": {
                         "type": "string"
                     }
                 }
