@@ -19,7 +19,7 @@
 <img src="https://img.shields.io/static/v1?label=ComicsStoreAPI&message=Greg%C3%B3rioNeto&color=7159c1&style=for-the-badge&logo=ghost">
 
 <h1 align="center">
-  <img alt="comics-store-api" title="#ComicsStoreAPI" src="https://i.picasion.com/pic91/b77a291dd272dee86cccbf69d0e60d1a.gif" />
+  <img alt="comics-store-api" title="#ComicsStoreAPI" src="https://github.com/igregorioneto/comic-store-api/blob/main/assets/comic1.png?raw=true" />
 </h1>
 
 <p align="center">
